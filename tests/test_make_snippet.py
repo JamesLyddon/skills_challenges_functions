@@ -1,3 +1,4 @@
+import pytest
 from lib.make_snippet import make_snippet
 
 """
@@ -31,3 +32,25 @@ def test_for_6_word_phrase():
 def test_for_10_word_phrase():
     result = make_snippet("one two three four five six seven eight nine ten")
     assert result == "one two three four five..."
+
+"""
+Handles non-string arguments being passed to function
+"""
+
+def test_for_int_as_argument():
+    with pytest.raises(Exception) as e:
+        make_snippet(1)
+    err_msg = str(e.value)
+    assert err_msg == "Argument must be a string."
+
+def test_for_bool_as_argument():
+    with pytest.raises(Exception) as e:
+        make_snippet(True)
+    err_msg = str(e.value)
+    assert err_msg == "Argument must be a string."
+
+def test_for_list_as_argument():
+    with pytest.raises(Exception) as e:
+        make_snippet([1, 2, 3])
+    err_msg = str(e.value)
+    assert err_msg == "Argument must be a string."
