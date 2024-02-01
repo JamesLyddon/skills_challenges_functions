@@ -26,8 +26,33 @@ def test_723_words_at_300wpm():
     result = estimate_read_time(sample_723, 300)
     assert result == "At 300wpm this 723 word text would take you 2 minutes and 25 seconds to read."
 
-# Test sigular case for minute and second if value is 1
+# Test singular case for minute and second if value is 1
 
 def test_200_words_at_198wpm():
     result = estimate_read_time(sample_200, 198)
     assert result == "At 198wpm this 200 word text would take you 1 minute and 1 second to read."
+
+# Test for None as text argument
+    
+def test_for_none_for_text():
+    with pytest.raises(Exception) as e:
+        estimate_read_time(None)
+    err_msg = str(e.value)
+    assert err_msg == "Text sample must be a string."
+
+
+# Test for [] as text argument
+    
+def test_for_list_for_text():
+    with pytest.raises(Exception) as e:
+        estimate_read_time([1, 2, 3])
+    err_msg = str(e.value)
+    assert err_msg == "Text sample must be a string."
+    
+#  Test for string as wpm argument
+    
+def test_for_string_for_wpm():
+    with pytest.raises(Exception) as e:
+        estimate_read_time(sample_200, "150")
+    err_msg = str(e.value)
+    assert err_msg == "Words per Minute must be a non-zero integer."
