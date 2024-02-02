@@ -89,7 +89,7 @@ estimate_read_time(None) => "Text sample must be a string."
 Given a non-string value
 It raises a value exception
 """
-estimate_read_time(1) => "Text sample but be a string."
+estimate_read_time(1) => "Text sample must be a string."
 
 """
 Given a non-int value for optional second wpm argument
