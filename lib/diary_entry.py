@@ -3,18 +3,20 @@ class DiaryEntry:
         # Parameters:
         #   title: string
         #   contents: string
-        pass
+        self.title = title
+        self.contents = contents
+        self.bookmark = 0
 
     def format(self):
         # Returns:
         #   A formatted diary entry, for example:
         #   "My Title: These are the contents"
-        pass
+        return f"{self.title}: {self.contents}"
 
     def count_words(self):
         # Returns:
         #   int: the number of words in the diary entry
-        pass
+        return len(self.title.split() + self.contents.split())
 
     def reading_time(self, wpm):
         # Parameters:
@@ -23,7 +25,7 @@ class DiaryEntry:
         # Returns:
         #   int: an estimate of the reading time in minutes for the contents at
         #        the given wpm.
-        pass
+        return self.count_words() / wpm
 
     def reading_chunk(self, wpm, minutes):
         # Parameters
@@ -38,4 +40,14 @@ class DiaryEntry:
         # If called again, `reading_chunk` should return the next chunk,
         # skipping what has already been read, until the contents is fully read.
         # The next call after that should restart from the beginning.
-        pass
+        text = self.title.split() + self.contents.split()
+        words_to_read = wpm * minutes
+        start = self.bookmark
+        end = start + words_to_read
+        if end > len(text):
+            self.bookmark = 0
+            return " ".join(text[start:])
+        else:
+            result = " ".join(text[start:end])
+            self.bookmark += words_to_read
+            return result
