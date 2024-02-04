@@ -12,7 +12,7 @@ class TaskMaster:
             raise Exception("No tasks to do!")
         print("[---TODO---]")
         for idx, item in enumerate(self._tasks):
-            print(f"{idx}: {item}")
+            print(f"{idx + 1}: {item}")
 
     def mark_task_complete(self, number):
         if number > len(self._tasks):
@@ -20,4 +20,7 @@ class TaskMaster:
         if number < 1 or type(number) != int or self._tasks == []:
             raise Exception("Please enter the task's list number (non-zero and non-negative integer).")
         self._tasks.pop(number - 1)
-        self.list_tasks()
+        if len(self._tasks) >= 1:
+            self.list_tasks()
+        else:
+            print("All tasks complete!")

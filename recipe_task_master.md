@@ -21,7 +21,7 @@ _Include the initializer, public properties, and public methods with all paramet
 ```python
 # EXAMPLE
 
-class Task_Master:
+class TaskMaster:
     # User-facing properties:
     #   task: string e.g. "walk the dog before work"
     #   tasks: list of task strings e.g. ["walk the dog before work", "book dentist appointment"]
@@ -75,7 +75,7 @@ _Make a list of examples of how the class will behave in different situations._
 Check initialises correctly and creates self.tasks = []
 """
 def test_initialisation():
-    tm = Task_Master()
+    tm = TaskMaster()
     assert tm != None
     assert tm._tasks == []
 
@@ -83,7 +83,7 @@ def test_initialisation():
 Check add_task("") throws the exception "Task must be a non-empty string."
 """
 def test_add_task_as_empty_string():
-    tm = Task_Master()
+    tm = TaskMaster()
     with pytest.raises(Exception) as e:
         tm.add_task("")
     err = str(e.value)
@@ -93,7 +93,7 @@ def test_add_task_as_empty_string():
 Check add_task(1) throws the exception "Task must be a non-empty string."
 """
 def test_add_task_as_empty_string():
-    tm = Task_Master()
+    tm = TaskMaster()
     with pytest.raises(Exception) as e:
         tm.add_task(1)
     err = str(e.value)
@@ -104,7 +104,7 @@ Check add_task("walk the dog") adds string "walk the dog" to the list of tasks
 by checking self._tasks
 """
 def test_add_task_successfully():
-    tm = Task_Master()
+    tm = TaskMaster()
     tm.add_task("walk the dog")
     result = tm._tasks
     assert result == ["walk the dog"]
@@ -113,7 +113,7 @@ Check add_task() called 3 times adds 3 tasks to the list of tasks
 by calling list_tasks()
 """
 def test_add_3_tasks_successfully():
-    tm = Task_Master()
+    tm = TaskMaster()
     tm.add_task("walk the dog")
     tm.add_task("pay phone bill")
     tm.add_task("buy milk")
@@ -124,7 +124,7 @@ def test_add_3_tasks_successfully():
 Check list_tasks() raises the exception "No tasks to do!" if list is empty 
 """
 def test_list_tasks_raises_exception_when_list_empty():
-    tm = Task_Master()
+    tm = TaskMaster()
     with pytest.raises(Exception) as e:
         tm.list_tasks()
     err = str(e.value)
@@ -134,7 +134,7 @@ def test_list_tasks_raises_exception_when_list_empty():
 Check mark_task_complete succefully removes a task from the list
 """
 def test_mark_task_complete_removes_task_from_list():
-    tm = Task_Master()
+    tm = TaskMaster()
     tm.add_task("walk the dog")
     tm.add_task("pay phone bill")
     tm.add_task("buy milk")
@@ -146,7 +146,7 @@ def test_mark_task_complete_removes_task_from_list():
 Check mark_task_complete raises the exception "Task does not exist." if index is out of bounds
 """
 def test_mark_task_complete_raises_exception_if_out_of_bounds():
-    tm = Task_Master()
+    tm = TaskMaster()
     tm.add_task("walk the dog")
     tm.add_task("pay phone bill")
     tm.add_task("buy milk")
@@ -159,7 +159,7 @@ def test_mark_task_complete_raises_exception_if_out_of_bounds():
 Check mark_task_complete raises the exception "Task does not exist." if task list is empty
 """
 def test_mark_test_complete_on_empty_list():
-    tm = Task_Master()
+    tm = TaskMaster()
     with pytest.raises(Exception) as e:
         tm.mark_task_complete(1)
     err = str(e.value)
@@ -169,7 +169,7 @@ def test_mark_test_complete_on_empty_list():
 Check mark_task_complete raises the exception "Please enter the task's list number (non-zero and non-negative integer)." if given 0
 """
 def test_mark_test_complete_0():
-    tm = Task_Master()
+    tm = TaskMaster()
     with pytest.raises(Exception) as e:
         tm.mark_task_complete(0)
     err = str(e.value)
@@ -179,7 +179,7 @@ def test_mark_test_complete_0():
 Check mark_task_complete raises the exception "Please enter the task's list number (non-zero and non-negative integer)." if given -1
 """
 def test_mark_test_complete_0():
-    tm = Task_Master()
+    tm = TaskMaster()
     with pytest.raises(Exception) as e:
         tm.mark_task_complete(-1)
     err = str(e.value)
