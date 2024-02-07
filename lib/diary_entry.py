@@ -35,6 +35,16 @@ class DiaryEntry:
         # If called again, `reading_chunk` should return the next chunk,
         # skipping what has already been read, until the contents is fully read.
         # The next call after that it should restart from the beginning.
-        pass
 
         # THIS WASN'T RELEVENT TO THE INTEGRATION TEST
+        text = self.title.split() + self.contents.split()
+        words_to_read = wpm * minutes
+        start = self.bookmark
+        end = start + words_to_read
+        if end > len(text):
+            self.bookmark = 0
+            return " ".join(text[start:])
+        else:
+            result = " ".join(text[start:end])
+            self.bookmark += words_to_read
+            return result
